@@ -1,0 +1,95 @@
+要達成在edittext輸入訊息，按下 button 後，兩台手機都會顯示輸入的訊息，可以參考以下的步驟：
+
+1. 在 DeviceControlActivity 的 onCreate() 方法中，找到相應的視圖元素，並在方法的最後設置 button 的點擊監聽器。
+
+```
+private EditText mInputField;
+private Button mSendButton;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_device_control);
+
+    // Find views
+    mInputField = findViewById(R.id.input_field);
+    mSendButton = findViewById(R.id.send_button);
+
+    // Set click listener for send button
+    mSendButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String message = mInputField.getText().toString();
+            // Send message to the other device
+            sendMessage(message);
+        }
+    });
+
+    // Rest of the code ...
+}
+```
+
+2. 實現 sendMessage() 方法，在此方法中向另一臺設備發送消息。
+
+```
+private void sendMessage(String message) {
+    if (mConnected) {
+        // Construct a byte array from the message string
+        byte[] messageBytes = message.getBytes();
+        // Get the characteristic that supports write operation
+        BluetoothGattCharacteristic writeCharacteristic = getWriteCharacteristic();
+        if (writeCharacteristic != null) {
+            // Set the value of the characteristic
+            writeCharacteristic.setValue(messageBytes);
+            // Write the value to the characteristic
+            mBluetoothLeService.writeCharacteristic(writeCharacteristic);
+        } else {
+            Log.e(TAG, "No write characteristic found");
+        }
+    } else {
+        Log.e(TAG, "Device not connected");
+    }
+}
+
+private BluetoothGattCharacteristic getWriteCharacteristic() {
+    // Traverse all services and characteristics to find the characteristic that supports write operation
+    for (List<BluetoothGattCharacteristic> characteristics : mGattCharacteristics) {
+        for (BluetoothGattCharacteristic characteristic : characteristics) {
+            if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_WRITE) > 0) {
+                return characteristic;
+            }
+        }
+    }
+    return null;
+}
+```
+
+3. 在 BroadcastReceiver 中處理 ACTION_DATA_AVAILABLE 事件，將接收到的數據顯示在 mDataField 中。
+
+```
+private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+    // ...
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        final String action = intent.getAction();
+        if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+            // ...
+        } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+            // ...
+        } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+            // ...
+        } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+            String data = intent.getStringExtra(BluetoothLeService.EXTRA_DATA);
+            displayData(data);
+        }
+    }
+};
+
+private void displayData(String data) {
+    if (data != null) {
+        mDataField.setText(data);
+    }
+}
+```
+
+請注意，此示例僅演示了如何將字符串傳輸到另一臺設備。如果您需要傳輸其他類型的數據，請適當地更改 sendMessage() 方法中的代碼。此外，

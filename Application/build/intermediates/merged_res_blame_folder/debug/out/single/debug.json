@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\menu_gatt_services.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\menu\\gatt_services.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_actionbar_indeterminate_progress.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\actionbar_indeterminate_progress.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\menu_main.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\menu\\main.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_listitem_device.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\listitem_device.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_gatt_services_characteristics.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\gatt_services_characteristics.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_peripheral_iput.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\peripheral_iput.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\drawable-hdpi_tile.9.png.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\drawable-hdpi\\tile.9.png"
+    },
+    {
+        "merged": "com.example.android.bluetoothlegatt.Application-merged_res-10:/layout_gatt_services_characteristics.xml.flat",
+        "source": "com.example.android.bluetoothlegatt.Application-main-13:/layout/gatt_services_characteristics.xml"
+    },
+    {
+        "merged": "com.example.android.bluetoothlegatt.Application-merged_res-10:/layout_peripheral_iput.xml.flat",
+        "source": "com.example.android.bluetoothlegatt.Application-main-13:/layout/peripheral_iput.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_test_start_page.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\test_start_page.xml"
+    },
+    {
+        "merged": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-merged_res-10:\\layout_startpage.xml.flat",
+        "source": "D:\\cacheadr\\.gradle\\daemon\\7.5\\com.example.android.bluetoothlegatt.Application-main-13:\\layout\\startpage.xml"
+    }
+]
