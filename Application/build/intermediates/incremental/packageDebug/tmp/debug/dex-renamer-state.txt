@@ -1,4 +1,4 @@
-#Sun May 07 23:22:46 CST 2023
+#Mon May 08 20:53:39 CST 2023
 base.0=D\:\\code\\connectivity-samples-main\\BluetoothLeGatt\\Application\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
