@@ -34,7 +34,8 @@ public class SampleGattAttributes {
         attributes.put(HEART_RATE_MEASUREMENT, "Heart Rate Measurement");
         attributes.put("00002a29-0000-1000-8000-00805f9b34fb", "Manufacturer Name String");
     }
-
+    public static final String SERVICE_UUID = "0000fff0-0000-1000-8000-00805f9b34fb";
+    public static final String CHARACTERISTIC_UUID = "0000fff1-0000-1000-8000-00805f9b34fb";
     public static String lookup(String uuid, String defaultName) {
         String name = attributes.get(uuid);
         return name == null ? defaultName : name;

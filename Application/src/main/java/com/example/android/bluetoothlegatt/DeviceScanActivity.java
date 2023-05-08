@@ -76,14 +76,14 @@ public class DeviceScanActivity extends ListActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
 
         Button mButtonCentral = new Button(this);
-        mButtonCentral.setText("Central");
+        mButtonCentral.setText("Peripheral");
         mButtonCentral.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1));
 
         Button mButtonPeripheral = new Button(this);
-        mButtonPeripheral.setText("Peripheral");
+        mButtonPeripheral.setText("Central");
         mButtonPeripheral.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,

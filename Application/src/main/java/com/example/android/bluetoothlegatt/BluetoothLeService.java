@@ -65,10 +65,48 @@ public class BluetoothLeService extends Service {
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT =
             UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
-
+    private BluetoothDevice mConnectedPeripheral;
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
+
+        @Override
+        public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+            super.onCharacteristicWrite(gatt, characteristic, status);
+
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                byte[] value = characteristic.getValue();
+                String data = new String(value);
+
+                // 在中央設備日誌中顯示傳輸成功的數據
+                Log.d(TAG, "onCharacteristicWrite: Success. Data sent: " + data);
+
+                // 確認是否有已連接的外設設備
+                if (mConnectedPeripheral != null) {
+                    // 獲取外設設備的 GATT 服務
+                    BluetoothGattService service = mBluetoothGatt.getService(UUID.fromString(SampleGattAttributes.SERVICE_UUID));
+                    if (service != null) {
+                        // 獲取外設設備的特徵
+                        BluetoothGattCharacteristic peripheralCharacteristic = service.getCharacteristic(UUID.fromString(SampleGattAttributes.CHARACTERISTIC_UUID));
+                        if (peripheralCharacteristic != null) {
+                            // 寫入數據到外設設備的特徵中
+                            peripheralCharacteristic.setValue(value);
+                            mBluetoothGatt.writeCharacteristic(peripheralCharacteristic);
+                        } else {
+                            Log.e(TAG, "onCharacteristicWrite: Error. Cannot find characteristic in peripheral device.");
+                        }
+                    } else {
+                        Log.e(TAG, "onCharacteristicWrite: Error. Cannot find service in peripheral device.");
+                    }
+                } else {
+                    Log.e(TAG, "onCharacteristicWrite: Error. No peripheral device connected.");
+                }
+            } else {
+                Log.e(TAG, "onCharacteristicWrite: Error. Failed to send data. Status: " + status);
+            }
+        }
+
+
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             String intentAction;
@@ -227,14 +265,14 @@ public class BluetoothLeService extends Service {
             }
         }
 
-        final BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-        if (device == null) {
+        mConnectedPeripheral = mBluetoothAdapter.getRemoteDevice(address);
+        if (mConnectedPeripheral == null) {
             Log.w(TAG, "Device not found.  Unable to connect.");
             return false;
         }
         // We want to directly connect to the device, so we are setting the autoConnect
         // parameter to false.
-        mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
+        mBluetoothGatt = mConnectedPeripheral.connectGatt(this, false, mGattCallback);
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
         mConnectionState = STATE_CONNECTING;
