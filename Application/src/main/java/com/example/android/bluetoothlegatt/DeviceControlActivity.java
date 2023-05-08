@@ -173,11 +173,13 @@ public class DeviceControlActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String data = editText.getText().toString();
-                UUID serviceUUID = UUID.fromString(SampleGattAttributes.SERVICE_UUID);
-                UUID characteristicUUID = UUID.fromString(SampleGattAttributes.CHARACTERISTIC_UUID);
-                BluetoothGattCharacteristic characteristic = mBluetoothGatt.getService(serviceUUID).getCharacteristic(characteristicUUID);
-                characteristic.setValue(data.getBytes());
-                mBluetoothGatt.writeCharacteristic(characteristic);
+                if (data != null && data.length() > 0) {
+                    UUID serviceUUID = UUID.fromString(SampleGattAttributes.SERVICE_UUID);
+                    UUID characteristicUUID = UUID.fromString(SampleGattAttributes.CHARACTERISTIC_UUID);
+                    BluetoothGattCharacteristic characteristic = mBluetoothGatt.getService(serviceUUID).getCharacteristic(characteristicUUID);
+                    characteristic.setValue(data.getBytes());
+                    mBluetoothGatt.writeCharacteristic(characteristic);
+                }
             }
         });
         // Sets up UI references.

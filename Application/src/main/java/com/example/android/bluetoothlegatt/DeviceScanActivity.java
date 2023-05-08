@@ -46,6 +46,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
@@ -156,6 +157,7 @@ public class DeviceScanActivity extends ListActivity {
         switch (item.getItemId()) {
             case R.id.menu_scan:
                 mLeDeviceListAdapter.clear();
+
                 scanLeDevice(true);
                 break;
             case R.id.menu_stop:
@@ -226,7 +228,7 @@ public class DeviceScanActivity extends ListActivity {
             }, SCAN_PERIOD);
 
             mScanning = true;
-            mBluetoothAdapter.startLeScan(mLeScanCallback);
+            mBluetoothAdapter.startLeScan(new UUID[]{UUID.fromString(SampleGattAttributes.SERVICE_UUID)}, mLeScanCallback); // 只掃描特定的服務
         } else {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
@@ -303,14 +305,22 @@ public class DeviceScanActivity extends ListActivity {
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
-
                 @Override
-                public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+                public void onLeScan(final BluetoothDevice device, int rssi,
+                                     byte[] scanRecord) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mLeDeviceListAdapter.addDevice(device);
-                            mLeDeviceListAdapter.notifyDataSetChanged();
+                            if (device.getAddress().equals("7C:10:C9:97:02:9D")) { // 只連接到特定的藍牙設備
+                                Intent intent = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+                                intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+                                intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+                                if (mScanning) {
+                                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                                    mScanning = false;
+                                }
+                                startActivity(intent);
+                            }
                         }
                     });
                 }
